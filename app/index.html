@@ -1,6 +1,7 @@
 <!doctype html>
 <html class="no-js">
-  <head>
+
+<head>
     <meta charset="utf-8">
     <title>Práctica validación formularios</title>
     <meta name="description" content="">
@@ -15,128 +16,265 @@
     <!-- build:css(.tmp) styles/main.css -->
     <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
-  </head>
-  <body>
+</head>
 
-    <div class="hero-unit">
-      <h1>Práctica validación formularios</h1>
-      <p>Aquí debería ir el enlace a <a href="https://github.com/oscarrel/practica-validacion-formularios">tu respositorio en GitHub</a>, donde estará la versión de desarrollo.</p>
-    </div>
+<body>
+    <h1>Práctica validación formularios</h1>
+    <p>Aquí debería ir el enlace a <a href="https://github.com/oscarrel/practica-validacion-formularios">tu respositorio en GitHub</a>, donde estará la versión de desarrollo.</p>
 
 
+    <div class="container">
+        <div class="row">
+            <div class="col-md-9 col-md-offset-1">
+                <div class="well well-sm">
+                    <form class="form-horizontal" action="" method="post">
+                        <fieldset>
+                            <legend class="text-center">Datos Personales</legend>
 
-<div class="container">
-    <div class="row">
-      <div class="col-md-6 col-md-offset-3">
-        <div class="well well-sm">
-          <form class="form-horizontal" action="" method="post">
-          <fieldset>
-            <legend class="text-center">Formulario</legend>
-    
-            <!-- Nombre input-->
-            <div class="form-group">
-              <label class="col-md-3 control-label" for="nombre">Nombre<span class="required"> *</span></label>
-              <div class="col-md-9">
-                <input id="nombre" name="nombre" type="text" placeholder="Tu nombre" class="form-control">
-              </div>
+                            <!-- Nombre input-->
+                            <div class="form-group">
+                                <label class="col-md-3 control-label" for="nombre">Nombre<span class="required"> *</span>
+                                </label>
+                                <div class="col-md-9">
+                                    <input id="nombre" name="nombre" type="text" placeholder="Tu nombre" class="form-control">
+                                </div>
+                            </div>
+
+                            <!-- Apellidos input-->
+                            <div class="form-group">
+                                <label class="col-md-3 control-label" for="apellidos">Apellidos<span class="required"> *</span>
+                                </label>
+                                <div class="col-md-9">
+                                    <input id="apellidos" name="apellidos" type="text" placeholder="Tus apellidos" class="form-control">
+                                </div>
+                            </div>
+
+                            <!-- Telefono input-->
+                            <div class="form-group">
+                                <label class="col-md-3 control-label" for="telefono">Telefono<span class="required"> *</span>
+                                </label>
+                                <div class="col-md-9">
+                                    <input id="telefono" name="telefono" type="text" placeholder="Tu telefono" class="form-control">
+                                </div>
+                            </div>
+
+                            <!-- Email input-->
+                            <div class="form-group">
+                                <label class="col-md-3 control-label" for="email">Tu email<span class="required"> *</span>
+                                </label>
+                                <div class="col-md-9">
+                                    <input id="email" name="email" type="text" placeholder="Tu email" class="form-control">
+                                </div>
+                            </div>
+
+                            <!-- Re-Email input-->
+                            <div class="form-group">
+                                <label class="col-md-3 control-label" for="reemail">Repetir email</label>
+                                <div class="col-md-9">
+                                    <input id="reemail" name="reemail" type="text" placeholder="Repite tu email" class="form-control">
+                                </div>
+                            </div>
+
+                            <!-- Conocer Select-->
+                            <div class="form-group">
+                                <label class="col-md-3 control-label" for="conocer">¿Como nos has conocido?</label>
+                                <div class="col-md-9">
+                                    <select id="conocer" name="conocer" class="form-control">
+                                        <option value="1">Prefiero no contestar</option>
+                                        <option value="2">Publicidad</option>
+                                        <option value="3">Profesionales del sector</option>
+                                        <option value="4">Internet</option>
+                                        <option value="5">A través de un amigo o conocido</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                        </fieldset>
+
+
+                        <fieldset>
+                            <legend class="text-center">Datos de facturación</legend>
+
+                            <!-- Demandante Radios -->
+                            <div class="form-group">
+                                <label class="col-md-3 control-label" for="demandante">Demandante<span class="required"> *</span>
+                                </label>
+                                <div class="col-md-9">
+                                    <div class="demandante">
+                                        <label for="demandante_0">
+                                            <input name="demandante" id="demandante_0" value="1" checked="checked" type="radio"> Particular
+                                        </label>
+                                    </div>
+                                    <div class="demandante">
+                                        <label for="demandante_1">
+                                            <input name="demandante" id="demandante_1" value="2" type="radio"> Empresa
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <!-- Nombre/Empresa input-->
+                            <div class="form-group">
+                                <label class="col-md-3 control-label" for="nombre">Nombre/Empresa<span class="required"> *</span>
+                                </label>
+                                <div class="col-md-9">
+                                    <input id="nombre" name="nombre" type="text" placeholder="Tu nombre" class="form-control">
+                                </div>
+                            </div>
+
+                            <!-- CIF/NIF input-->
+                            <div class="form-group">
+                                <label class="col-md-3 control-label" for="cifnif">CIF/NIF<span class="required"> *</span>
+                                </label>
+                                <div class="col-md-9">
+                                    <input id="cifnif" name="cifnif" type="text" placeholder="Tu CIF/NIF" class="form-control">
+                                </div>
+                            </div>
+
+                            <!-- NombreEmpresa input-->
+                            <div class="form-group">
+                                <label class="col-md-3 control-label" for="nom_emp">Nombre/Empresa<span class="required"> *</span>
+                                </label>
+                                <div class="col-md-9">
+                                    <input id="nom_emp" name="nom_emp" type="text" placeholder="Tu nombre/Nombre de tu empresa" class="form-control">
+                                </div>
+                            </div>
+
+                            <!-- Direccion input-->
+                            <div class="form-group">
+                                <label class="col-md-3 control-label" for="direccion">Dirección<span class="required"> *</span>
+                                </label>
+                                <div class="col-md-9">
+                                    <input id="direccion" name="direccion" type="text" placeholder="Tu dirección" class="form-control">
+                                </div>
+                            </div>
+
+                            <!-- Código Postal input-->
+                            <div class="form-group">
+                                <label class="col-md-3 control-label" for="cp">CP<span class="required"> *</span>
+                                </label>
+                                <div class="col-md-9">
+                                    <input id="cp" name="cp" type="text" placeholder="Tu código postal" class="form-control">
+                                </div>
+                            </div>
+
+                            <!-- Localidad input-->
+                            <div class="form-group">
+                                <label class="col-md-3 control-label" for="localidad">localidad<span class="required"> *</span>
+                                </label>
+                                <div class="col-md-9">
+                                    <input id="localidad" name="localidad" type="text" placeholder="Tu localidad" class="form-control">
+                                </div>
+                            </div>
+
+                            <!-- Provincia input-->
+                            <div class="form-group">
+                                <label class="col-md-3 control-label" for="provincia">Provincia<span class="required"> *</span>
+                                </label>
+                                <div class="col-md-9">
+                                    <input id="provincia" name="provincia" type="text" placeholder="Tu provincia" class="form-control">
+                                </div>
+                            </div>
+
+                            <!-- Pais input-->
+                            <div class="form-group">
+                                <label class="col-md-3 control-label" for="pais">País<span class="required"> *</span>
+                                </label>
+                                <div class="col-md-9">
+                                    <input id="pais" name="pais" type="text" placeholder="Tu país" class="form-control">
+                                </div>
+                            </div>
+
+                            <!-- Código IBAN input-->
+                            <div class="form-group">
+                                <label class="col-md-3 control-label" for="cod_iban">Código IBAN<span class="required"> *</span>
+                                </label>
+                                <div class="col-md-9">
+                                    <input id="cod_iban" name="cod_iban" type="text" placeholder="Tu código IBAN" class="form-control">
+                                </div>
+                            </div>
+
+                            <!-- Forma de pago radio-->
+                            <div class="form-group">
+                                <label class="col-md-3 control-label" for="modo_pago">Forma de pago<span class="required"> *</span>
+                                </label>
+                                <div class="col-md-9">
+                                    <div class="modo_pago">
+                                        <label for="modo_pago_0">
+                                            <input name="modo_pago" id="modo_pago_0" value="1" checked="checked" type="radio"> Mensual
+                                        </label>
+                                    </div>
+                                    <div class="modo_pago">
+                                        <label for="modo_pago_1">
+                                            <input name="modo_pago" id="modo_pago_1" value="2" type="radio"> Trimestral
+                                        </label>
+                                    </div>
+                                    <div class="modo_pago">
+                                        <label for="modo_pago_2">
+                                            <input name="modo_pago" id="modo_pago_2" value="3" type="radio"> Anual
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </fieldset>
+
+                        <fieldset>
+                            <legend class="text-center">Datos de Acceso</legend>
+
+                            <!-- Usuario input-->
+                            <div class="form-group">
+                                <label class="col-md-3 control-label" for="usuario">Usuario<span class="required"> *</span>
+                                </label>
+                                <div class="col-md-9">
+                                    <input id="usuario" name="usuario" type="text" placeholder="Tu nombre de usuario" class="form-control">
+                                </div>
+                            </div>
+
+                            <!-- Contraseña input-->
+                            <div class="form-group">
+                                <label class="col-md-3 control-label" for="pass">Contraseña<span class="required"> *</span>
+                                </label>
+                                <div class="col-md-9">
+                                    <input id="pass" name="pass" type="text" placeholder="Tu contraseña" class="form-control">
+                                </div>
+                            </div>
+
+                            <!-- Re Contraseña input-->
+                            <div class="form-group">
+                                <label class="col-md-3 control-label" for="repass">Repite Contraseña<span class="required"> *</span>
+                                </label>
+                                <div class="col-md-9">
+                                    <input id="repass" name="repass" type="text" placeholder="Repite tu contraseña" class="form-control">
+                                </div>
+                            </div>
+
+                        </fieldset>
+
+
+                        <!-- Form actions -->
+                        <div class="form-group">
+                            <div class="col-md-12 text-right">
+                                <button type="submit" class="btn btn-primary btn-lg">Enviar</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
             </div>
-
-            <!-- Apellidos input-->
-            <div class="form-group">
-              <label class="col-md-3 control-label" for="apellidos">Apellidos<span class="required"> *</span></label>
-              <div class="col-md-9">
-                <input id="apellidos" name="apellidos" type="text" placeholder="Tus apellidos" class="form-control">
-              </div>
-            </div>
-
-            <!-- Telefono input-->
-            <div class="form-group">
-              <label class="col-md-3 control-label" for="telefono">Telefono<span class="required"> *</span></label>
-              <div class="col-md-9">
-                <input id="telefono" name="telefono" type="text" placeholder="Tu telefono" class="form-control">
-              </div>
-            </div>
-    
-            <!-- Email input-->
-            <div class="form-group">
-              <label class="col-md-3 control-label" for="email">Tu email<span class="required"> *</span></label>
-              <div class="col-md-9">
-                <input id="email" name="email" type="text" placeholder="Tu email" class="form-control">
-              </div>
-            </div>
-
-            <!-- Re-Email input-->
-            <div class="form-group">
-              <label class="col-md-3 control-label" for="reemail">Repetir email</label>
-              <div class="col-md-9">
-                <input id="reemail" name="reemail" type="text" placeholder="Repite tu email" class="form-control">
-              </div>
-            </div>
-
-            <!-- Conocer input-->
-            <div class="form-group">
-              <label class="col-md-3 control-label" for="conocer">¿Como nos has conocido?</label>
-              <div class="col-md-9">
-                <input id="conocer" name="conocer" type="text" placeholder="Como nos has conocido" class="form-control">
-              </div>
-            </div>
-    
-            <!-- Message body -->
-            <div class="form-group">
-              <label class="col-md-3 control-label" for="message">Your message</label>
-              <div class="col-md-9">
-                <textarea class="form-control" id="message" name="message" placeholder="Please enter your message here..." rows="5"></textarea>
-              </div>
-            </div>
-
-    <!-- Single button -->
-            <div class="btn-group">
-              <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                Action <span class="caret"></span>
-              </button>
-              <ul class="dropdown-menu" role="menu">
-                <li><a href="#">Action</a></li>
-                <li><a href="#">Another action</a></li>
-                <li><a href="#">Something else here</a></li>
-                <li class="divider"></li>
-                <li><a href="#">Separated link</a></li>
-              </ul>
-            </div>
-
-
-
-            
-    
-            <!-- Form actions -->
-            <div class="form-group">
-              <div class="col-md-12 text-right">
-                <button type="submit" class="btn btn-primary btn-lg">Submit</button>
-              </div>
-            </div>
-
-
-
-
-
-
-
-
-          </fieldset>
-          </form>
         </div>
-      </div>
-    </div>
 
-    <!-- build:js(.) scripts/vendor.js -->
-    <!-- bower:js -->
-    <script src="bower_components/jquery/dist/jquery.js"></script>
-    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
-    <script src="bower_components/jquery-validate/dist/jquery.validate.js"></script>
-    <!-- endbower -->
-    <!-- endbuild -->
+        <!-- build:js(.) scripts/vendor.js -->
+        <!-- bower:js -->
+        <script src="bower_components/jquery/dist/jquery.js"></script>
+        <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+        <script src="bower_components/jquery-validate/dist/jquery.validate.js"></script>
+        <!-- endbower -->
+        <!-- endbuild -->
 
         <!-- build:js({app,.tmp}) scripts/main.js -->
         <script src="scripts/main.js"></script>
         <!-- endbuild -->
 </body>
+
 </html>
