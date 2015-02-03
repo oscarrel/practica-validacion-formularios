@@ -3,6 +3,7 @@
  * Locale: ES (Spanish; Español)
  */
 jQuery.extend(jQuery.validator.messages, {
+  lettersonly: "Introduce sólo carácteres.",
   required: "Este campo es obligatorio.",
   remote: "Por favor, rellena este campo.",
   email: "Por favor, escribe una dirección de correo válida",

@@ -27,7 +27,7 @@
         <div class="row">
             <div class="col-md-9 col-md-offset-1">
                 <div class="well well-sm">
-                    <form class="form-horizontal" action="" method="post">
+                    <form id="validForm" class="form-horizontal" action="" method="post">
                         <fieldset>
                             <legend class="text-center">Datos Personales</legend>
 
@@ -97,17 +97,17 @@
 
                             <!-- Demandante Radios -->
                             <div class="form-group">
-                                <label class="col-md-3 control-label" for="demandante">Demandante<span class="required"> *</span>
+                                <label class="col-md-3 radio-inline" for="demandante">Demandante<span class="required"> *</span>
                                 </label>
                                 <div class="col-md-9">
                                     <div class="demandante">
-                                        <label for="demandante_0">
-                                            <input name="demandante" id="demandante_0" value="1" checked="checked" type="radio"> Particular
+                                        <label for="particular">
+                                            <input name="demandante" id="particular" value="1" checked="checked" type="radio"> Particular
                                         </label>
                                     </div>
                                     <div class="demandante">
-                                        <label for="demandante_1">
-                                            <input name="demandante" id="demandante_1" value="2" type="radio"> Empresa
+                                        <label for="empresa">
+                                            <input name="demandante" id="empresa" value="2" type="radio"> Empresa
                                         </label>
                                     </div>
                                 </div>
@@ -116,10 +116,10 @@
 
                             <!-- Nombre/Empresa input-->
                             <div class="form-group">
-                                <label class="col-md-3 control-label" for="nombre">Nombre/Empresa<span class="required"> *</span>
+                                <label class="col-md-3 control-label" for="nombre_emp">Nombre<span class="required"> *</span>
                                 </label>
                                 <div class="col-md-9">
-                                    <input id="nombre" name="nombre" type="text" placeholder="Tu nombre" class="form-control">
+                                    <input id="nombre_emp" name="nombre_emp" type="text" placeholder="Tu nombre" class="form-control">
                                 </div>
                             </div>
 

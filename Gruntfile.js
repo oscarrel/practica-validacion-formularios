@@ -19,6 +19,7 @@ module.exports = function (grunt) {
   // Configurable paths
   var config = {
     app: 'app',
+    //dist: '/var/www/practica_validacion_formulario'
     dist: 'dist'
   };
 
@@ -140,7 +141,7 @@ module.exports = function (grunt) {
       all: {
         options: {
           run: true,
-          urls: ['http://<%= connect.test.options.hostname %>:<%= connect.test.options.port %>/index.html']
+          urls: ['http://<%= connect.test.options.hostname %>:<%= connect.test.options.port %>/*.html']
         }
       }
     },
@@ -164,7 +165,7 @@ module.exports = function (grunt) {
     wiredep: {
       app: {
         ignorePath: /^\/|\.\.\//,
-        src: ['<%= config.app %>/index.html']
+        src: ['<%= config.app %>/*.html']
       }
     },
 
@@ -190,7 +191,7 @@ module.exports = function (grunt) {
       options: {
         dest: '<%= config.dist %>'
       },
-      html: '<%= config.app %>/index.html'
+      html: '<%= config.app %>/*.html'
     },
 
     // Performs rewrites based on rev and the useminPrepare configuration
@@ -289,11 +290,12 @@ module.exports = function (grunt) {
             '*.{ico,png,txt}',
             'images/{,*/}*.webp',
             '{,*/}*.html',
-            'styles/fonts/{,*/}*.*'
+            'styles/fonts/{,*/}*.*',
+            'php/*.*'
           ]
         }, {
           src: 'node_modules/apache-server-configs/dist/.htaccess',
-          dest: '<%= config.dist %>/.htaccess'
+          dest: '<%= config.dist %>/htaccess'
         }]
       },
       styles: {
