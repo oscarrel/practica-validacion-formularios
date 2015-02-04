@@ -17,26 +17,26 @@ $(document).ready(function () {
             //Cambia el foco de apellido y llama a rellenaNombre
 
     //* Teléfono contendrá solo dígitos y un total de 9.
-            telefono: {
-                required: true,
-                digits: true,
-                minlength: 9,
-                maxlength: 9
-            },
+    telefono: {
+        required: true,
+        digits: true,
+        minlength: 9,
+        maxlength: 9
+    },
     //* Comprobaremos que el usuario no exista previamente en la bbdd
     //  (NIF o email, el CIF no es necesario).
 
     //* email debe ser un correo electrónico válido
     //  (al menos en apariencia)
-            email: {
-                required: true,
-				email: true
-					//minlength : 6,
-					//remote : "php/validar_email_db.php"
+    email: {
+        required: true,
+        email: true,
+        remote : "php/validar_email_db.php"
+				//minlength : 6,		
             },
             reemail: {
                 required: true,
-                equalTo: '#email'
+                equalTo: email
             },
             conocer: {
                 required: true
@@ -50,15 +50,15 @@ $(document).ready(function () {
 
     //* Los campos CIF/NIF y Nombre/Empresa adecuarán su label
     //  en función del demandante seleccionado.
-            demandante: {
-                required: true
-            },
+    demandante: {
+        required: true
+    },
             /*
             nom_emp: {
                 required: true
             },*/
             cifnif: {
-                required: true
+
             },
             direccion: {
                 required: true
@@ -69,11 +69,11 @@ $(document).ready(function () {
     //* Una vez insertado el código postal, se debe seleccionar
     //  la provincia y la localidad de forma automática.
     //  La localidad se rellenará con criterio libre.
-            cp: {
-                required: true,
-                digits: true,
-                maxlength: 5
-                //Falta funcion de completar
+    cp: {
+        required: true,
+        digits: true,
+        maxlength: 5
+                //Función para completar lanzada cuando cambia el foco
             },
             localidad: {
                 required: true,
@@ -89,87 +89,63 @@ $(document).ready(function () {
             },
     //* El código IBAN debe ser válido
     
-            cod_iban: {
-                required: true,
-                iban: true
-            },
-            modo_pago: {
-                required: true
-            },
-            
+    cod_iban: {
+        required: true,
+        iban: true
+    },
+    modo_pago: {
+        required: true
+    },
+
     //* El usuario debe tener al menos 4 caracteres,
     //  se rellenará de modo automático con el correo electrónico
     //  y no podrá ser modificado.
-            usuario: {
-                required: true,
-                minlength: 4
-            },
+    usuario: {
+        required: true,
+        minlength: 4
+    },
     //* La contraseña se debe forzar a que sea compleja.
-            pass: {
-                required: true
+    pass: {
+        required: true
                 //Añadir plugin complexity
+            },
+            repass: {
+                required: true,
+                equalTo: pass
             }
-        },
-    //* Una vez pulsemos enviar en el formulario se mostrará un aviso
-    //  al usuario de que se va a dar de alta y que se le pasará la
-    //  primera cuota de 50€, 140€ o 550€ según corresponda (forma de pago).
-    //  El usuario podrá cancelar la operación.
-
-        /*
-        messages: {
-            firstName: {
-                lettersonly: "Introduce sólo carácteres."
-             },
-             lastName1: {
-                 lettersonly: "Introduce sólo carácteres."
-             },
-             lastName2: {
-                 lettersonly: "Introduce sólo carácteres."
-             },
-             documentNumber: {
-                 remote: "Este DNI ya esta en uso.",
-             },
-             email: {
-                 remote: "Este correo ya esta en uso.",
-             }
-         },*/
-         
-        //Captura el envío del formulario una vez que se ha rellenado correctamente
-        submitHandler: function () {
-            alert('¡Enviado!');
         }
     });
 
-
-    $('#postal_code').focusout(function () {
-        var caracteres = $('#postal_code').val();
+    //  Funcion para completar el codigo postal con ceros
+    $('#cp').focusout(function () {
+        var caracteres = $('#cp').val();
         if (caracteres.length > 0 && caracteres.match(/^\d+$/)) {
             while (caracteres.length <= 4) {
-                $('#postal_code').val('0'+ caracteres);
-                caracteres = $('#postal_code').val();
+                $('#cp').val('0'+ caracteres);
+                caracteres = $('#cp').val();
             }
         }
     });
 
 
-
+    //  Funcion para rellenar campo de nombre con nombre y usuario
     function rellenaNombre() {
         var $datosper;
         $datosper = $("#nombre").val() + " " + $("#apellidos").val();
-        if ($datosper !== '' && $("#particular").is(':checked')) {
+        if ($datosper !== ' ' && $("#particular").is(':checked')) {
             $("#nombre_emp").val($datosper);
         }
     }
 
-
+    //  Lanza la funcion rellenar campo cuando cambia el foco
     $('#apellidos').blur(function (event) {
         rellenaNombre();
     });
 
-
+    //  Funcion para cambiar el texto de la etiqueta en demandante
     $("#empresa").change(function (evento) {
         if ($("#empresa").is(':checked')) {
-            $("label[for='nombre_emp']").first().text("Empresa");
+            $("label[for='nombre_emp']").first().html('Empresa<span class="required"> *</span>');
             $("#nombre_emp").val('');
             $("#nombre_emp").attr("placeholder", "Nombre de la empresa");
         }
@@ -184,7 +160,4 @@ $(document).ready(function () {
             rellenaNombre();
         }
     });
-
-
-
-});
+      });

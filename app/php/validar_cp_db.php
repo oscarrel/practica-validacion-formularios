@@ -2,9 +2,9 @@
 /* Descomentaríamos la siguiente línea para mostrar errores de php en el fichero: */
 // ini_set('display_errors', '1');
 /* Definimos los parámetros de conexión con la bbdd: */
-$dbinfo = "mysql:dbname=xxxx;host=localhost";
-$user = "yyyyy";
-$pass = "zzzzz";
+$dbinfo = "mysql:dbname=oscar_validacion;host=localhost";
+$user = "oscar_root";
+$pass = "oscar_root";
 //Nos intentamos conectar:
 try {
     /* conectamos con bbdd e inicializamos conexión como UTF8 */
@@ -15,16 +15,16 @@ try {
 }
 /* Para hacer debug cargaríamos a mano el parámetro, descomentaríamos la siguiente línea: */
 //$_REQUEST['zip'] = "12";
-if (isset($_POST['zip'])) {
+if (isset($_POST['cp'])) {
     /* La línea siguiente la podemos descomentar para ver desde firebug-xhr si se pasa bien el parámetro desde el formulario */
     //echo $_REQUEST['email'];
-    if (strlen($_POST['zip']) >= 2){
-	    $zip = substr($_POST['zip'], 0, 2);
+    if (strlen($_POST['cp']) >= 2){
+	    $codpos = substr($_POST['cp'], 0, 2);
     } else {
-	    $zip = $_POST['zip'];
+	    $codpos = $_POST['cp'];
     }
-    $sql = $db->prepare("SELECT Provincia FROM t_provincias WHERE CodProv=?");
-    $sql->bindParam(1, $zip, PDO::PARAM_STR);
+    $sql = $db->prepare("SELECT provincia FROM t_provincias WHERE cod_prov=?");
+    $sql->bindParam(1, $codpos, PDO::PARAM_STR);
     $sql->execute();
     /* Ojo... PDOStatement::rowCount() devuelve el número de filas afectadas por la última sentencia DELETE, INSERT, o UPDATE 
      * ejecutada por el correspondiente objeto PDOStatement.Si la última sentencia SQL ejecutada por el objeto PDOStatement 
@@ -34,17 +34,16 @@ if (isset($_POST['zip'])) {
      */
     $valid = 'true'; 
     if ($sql->rowCount() > 0) {
-        $valid= 'false';
+        $valid= 'true';
     } else {
-       $valid='true';
+       $valid='false';
     }
     
     
-	$okey = $sql->fetch();    
-    
-    
+	$okey = $sql->fetch();
+    echo $valid;   
+    echo $okey[0];   
 }
 $sql=null;
 $db = null;
-echo $okey[0];
 ?>

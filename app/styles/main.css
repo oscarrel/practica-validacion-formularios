@@ -30,6 +30,6 @@ body {
 
 body {padding-top:20px;}
 
-.required{
+.required, .error{
   color:red;
 }

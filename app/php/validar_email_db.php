@@ -2,9 +2,9 @@
 /* Descomentaríamos la siguiente línea para mostrar errores de php en el fichero: */
 // ini_set('display_errors', '1');
 /* Definimos los parámetros de conexión con la bbdd: */
-$dbinfo = "mysql:dbname=validacion;host=localhost";
-$user = "root";
-$pass = "root";
+$dbinfo = "mysql:dbname=oscar_validacion;host=localhost";
+$user = "oscar_root";
+$pass = "oscar_root";
 //Nos intentamos conectar:
 try {
     /* conectamos con bbdd e inicializamos conexión como UTF8 */
@@ -37,7 +37,7 @@ if (isset($_REQUEST['email'])) {
        $valid='true';
     }
 }
+echo $valid;
 $sql=null;
 $db = null;
-echo $valid;
 ?>
