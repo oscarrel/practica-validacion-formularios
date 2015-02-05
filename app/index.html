@@ -11,6 +11,8 @@
     <!-- build:css(.) styles/vendor.css -->
     <!-- bower:css -->
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="bower_components/select2/select2.css" />
+    <link rel="stylesheet" href="bower_components/select2-bootstrap-css/select2-bootstrap.css" />
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css(.tmp) styles/main.css -->
@@ -21,8 +23,6 @@
 <body>
     <h1>Práctica validación formularios</h1>
     <p>Aquí debería ir el enlace a <a href="https://github.com/oscarrel/practica-validacion-formularios">tu respositorio en GitHub</a>, donde estará la versión de desarrollo.</p>
-
-
     <div class="container">
         <div class="row">
             <div class="col-md-9 col-md-offset-1">
@@ -30,7 +30,6 @@
                     <form id="validForm" class="form-horizontal" action="" method="post">
                         <fieldset>
                             <legend class="text-center">Datos Personales</legend>
-
                             <!-- Nombre input-->
                             <div class="form-group">
                                 <label class="col-md-3 control-label" for="nombre">Nombre<span class="required"> *</span>
@@ -39,7 +38,6 @@
                                     <input id="nombre" name="nombre" type="text" placeholder="Tu nombre" class="form-control">
                                 </div>
                             </div>
-
                             <!-- Apellidos input-->
                             <div class="form-group">
                                 <label class="col-md-3 control-label" for="apellidos">Apellidos<span class="required"> *</span>
@@ -48,7 +46,6 @@
                                     <input id="apellidos" name="apellidos" type="text" placeholder="Tus apellidos" class="form-control">
                                 </div>
                             </div>
-
                             <!-- Telefono input-->
                             <div class="form-group">
                                 <label class="col-md-3 control-label" for="telefono">Telefono<span class="required"> *</span>
@@ -57,7 +54,6 @@
                                     <input id="telefono" name="telefono" type="text" placeholder="Tu telefono" class="form-control">
                                 </div>
                             </div>
-
                             <!-- Email input-->
                             <div class="form-group">
                                 <label class="col-md-3 control-label" for="email">Tu email<span class="required"> *</span>
@@ -66,15 +62,14 @@
                                     <input id="email" name="email" type="text" placeholder="Tu email" class="form-control">
                                 </div>
                             </div>
-
                             <!-- Re-Email input-->
                             <div class="form-group">
-                                <label class="col-md-3 control-label" for="reemail">Repetir email<span class="required"> *</span></label>
+                                <label class="col-md-3 control-label" for="reemail">Repetir email<span class="required"> *</span>
+                                </label>
                                 <div class="col-md-9">
                                     <input id="reemail" name="reemail" type="text" placeholder="Repite tu email" class="form-control">
                                 </div>
                             </div>
-
                             <!-- Conocer Select-->
                             <div class="form-group">
                                 <label class="col-md-3 control-label" for="conocer">¿Como nos has conocido?</label>
@@ -88,215 +83,377 @@
                                     </select>
                                 </div>
                             </div>
-
                         </fieldset>
-
-
                         <fieldset>
                             <legend class="text-center">Datos de facturación</legend>
-
                             <!-- Demandante Radios -->
                             <div class="form-group">
                                 <label class="col-md-3 control-label" for="demandante">Demandante<span class="required"> *</span>
                                 </label>
                                 <div class="col-md-9">
                                     <label class="radio-inline" for="particular">
-                                        <input name="demandante" id="particular" value="1" checked="checked" type="radio"> Particular
+                                        <input name="demandante" id="particular" value="1" checked="checked" type="radio">Particular
                                     </label>
                                     <label class="radio-inline" for="empresa">
-                                        <input name="demandante" id="empresa" value="2" type="radio"> Empresa
+                                        <input name="demandante" id="empresa" value="2" type="radio">Empresa
                                     </label>
                                 </div>
                             </div>
-
-
                             <!-- Nombre/Empresa input-->
                             <div class="form-group">
                                 <label class="col-md-3 control-label" for="nombre_emp">Nombre<span class="required"> *</span>
                                 </label>
                                 <div class="col-md-9">
-                                    <input id="nombre_emp" name="nombre_emp" type="text" placeholder="Tu nombre" class="form-control">
+                                    <input id="nombre_emp" name="nombre_emp" type="text" placeholder="Nombre del demandante" class="form-control">
                                 </div>
                             </div>
-
                             <!-- CIF/NIF input-->
                             <div class="form-group">
-                                <label class="col-md-3 control-label" for="cifnif">CIF/NIF<span class="required"> *</span>
+                                <label class="col-md-3 control-label" for="cifnif">NIF<span class="required"> *</span>
                                 </label>
                                 <div class="col-md-9">
-                                    <input id="cifnif" name="cifnif" type="text" placeholder="Tu CIF/NIF" class="form-control">
+                                    <input id="cifnif" name="cifnif" type="text" placeholder="NIF del demandante" class="form-control">
                                 </div>
                             </div>
-
-                            <!-- NombreEmpresa input-->
-                            <div class="form-group">
-                                <label class="col-md-3 control-label" for="nom_emp">Nombre/Empresa<span class="required"> *</span>
-                                </label>
-                                <div class="col-md-9">
-                                    <input id="nom_emp" name="nom_emp" type="text" placeholder="Tu nombre/Nombre de tu empresa" class="form-control">
-                                </div>
-                            </div>
-
                             <!-- Direccion input-->
                             <div class="form-group">
                                 <label class="col-md-3 control-label" for="direccion">Dirección<span class="required"> *</span>
                                 </label>
                                 <div class="col-md-9">
-                                    <input id="direccion" name="direccion" type="text" placeholder="Tu dirección" class="form-control">
+                                    <input id="direccion" name="direccion" type="text" placeholder="Dirección del demandante" class="form-control">
                                 </div>
                             </div>
-
                             <!-- Código Postal input-->
                             <div class="form-group">
                                 <label class="col-md-3 control-label" for="cp">CP<span class="required"> *</span>
                                 </label>
                                 <div class="col-md-9">
-                                    <input id="cp" name="cp" type="text" placeholder="Tu código postal" class="form-control">
+                                    <input id="cp" name="cp" type="text" placeholder="Código postal del demandante" class="form-control">
                                 </div>
                             </div>
-
-                            <!-- Provincia input-->
-                            <div class="form-group">
-                                <label class="col-md-3 control-label" for="provincia">Provincia<span class="required"> *</span></label>
-                                <div class="col-md-9">
-                                    <select id="provincia" name="provincia" class="form-control">
-                                        <option value="-1">Seleccione una provincia</option>
-                                        <option value="1">Alava</option>
-                                        <option value="2">Albacete</option>
-                                        <option value="3">Alicante</option>
-                                        <option value="4">Almería</option>
-                                        <option value="33">Asturias</option>
-                                        <option value="5">Ávila</option>
-                                        <option value="6">Badajoz</option>
-                                        <option value="7">Baleares</option>
-                                        <option value="8">Barcelona</option>
-                                        <option value="9">Burgos</option>
-                                        <option value="10">Caceres</option>
-                                        <option value="11">Cádiz</option>
-                                        <option value="39">Cantabria</option>
-                                        <option value="12">Castellón</option>
-                                        <option value="51">Ceuta</option>
-                                        <option value="13">Ciudad Real</option>
-                                        <option value="14">Cordoba</option>
-                                        <option value="16">Cuenca</option>
-                                        <option value="17">Gerona</option>
-                                        <option value="18">Granada</option>
-                                        <option value="19">Guadalajara</option>
-                                        <option value="20">Guipuzcoa</option>
-                                        <option value="21">Huelva</option>
-                                        <option value="22">Huesca</option>
-                                        <option value="23">Jaén</option>
-                                        <option value="15">La Coruña</option>
-                                        <option value="26">La Rioja</option>
-                                        <option value="35">Las Palmas</option>
-                                        <option value="24">León</option>
-                                        <option value="25">Lérida</option>
-                                        <option value="27">Lugo</option>
-                                        <option value="28">Madrid</option>
-                                        <option value="29">Málaga</option>
-                                        <option value="52">Melilla</option>
-                                        <option value="30">Murcia</option>
-                                        <option value="31">Navarra</option>
-                                        <option value="32">Orense</option>
-                                        <option value="34">Palencia</option>
-                                        <option value="36">Pontevedra</option>
-                                        <option value="37">Salamanca</option>
-                                        <option value="38">Santa Cruz de Tenerife</option>
-                                        <option value="40">Segovia</option>
-                                        <option value="41">Sevilla</option>
-                                        <option value="42">Soria</option>
-                                        <option value="43">Tarragona</option>
-                                        <option value="44">Teruel</option>
-                                        <option value="45">Toledo</option>
-                                        <option value="46">Valencia</option>
-                                        <option value="47">Valladolid</option>
-                                        <option value="48">Vizcaya</option>
-                                        <option value="49">Zamora</option>
-                                        <option value="50">Zaragoza</option>
-                                    </select>
-                                </div>
-                            </div>
-
                             <!-- Localidad input-->
                             <div class="form-group">
-                                <label class="col-md-3 control-label" for="localidad">localidad<span class="required"> *</span>
+                                <label class="col-md-3 control-label" for="localidad">Localidad<span class="required"> *</span>
                                 </label>
                                 <div class="col-md-9">
-                                    <input id="localidad" name="localidad" type="text" placeholder="Tu localidad" class="form-control">
+                                    <input id="localidad" name="localidad" type="text" placeholder="Localidad del demandante" class="form-control">
                                 </div>
                             </div>
-
-
+                            <!-- Provincia input-->
+                            <div class="form-group">
+                                <label class="col-md-3 control-label" for="provincia">Provincia<span class="required"> *</span>
+                                </label>
+                                <div class="col-md-9">
+                                    <input id="provincia" name="provincia" type="text" placeholder="Provincia del demandante" class="form-control">
+                                </div>
+                            </div>
                             <!-- Pais input-->
                             <div class="form-group">
                                 <label class="col-md-3 control-label" for="pais">País<span class="required"> *</span>
                                 </label>
                                 <div class="col-md-9">
-                                    <input id="pais" name="pais" type="text" placeholder="Tu país" class="form-control">
+                                    <select id="pais" name="pais" class="form-control">
+                                        <option value="AF">Afganistan</option>
+                                        <option value="AL">Albania</option>
+                                        <option value="DE">Alemania</option>
+                                        <option value="AD">Andorra</option>
+                                        <option value="AO">Angola</option>
+                                        <option value="AI">Anguilla</option>
+                                        <option value="AQ">Antártida</option>
+                                        <option value="AG">Antigua y Barbuda</option>
+                                        <option value="AN">Antillas Holandesas</option>
+                                        <option value="SA">Arabia Saudita</option>
+                                        <option value="DZ">Argelia</option>
+                                        <option value="AR">Argentina</option>
+                                        <option value="AM">Armenia</option>
+                                        <option value="AW">Aruba</option>
+                                        <option value="AU">Australia</option>
+                                        <option value="AT">Austria</option>
+                                        <option value="AZ">Azerbaiyán</option>
+                                        <option value="BS">Bahamas</option>
+                                        <option value="BH">Bahrain</option>
+                                        <option value="BD">Bangladesh</option>
+                                        <option value="BB">Barbados</option>
+                                        <option value="BE">Bélgica</option>
+                                        <option value="BZ">Belice</option>
+                                        <option value="BJ">Benín</option>
+                                        <option value="BM">Bermudas</option>
+                                        <option value="BY">Bielorusia</option>
+                                        <option value="BO">Bolivia</option>
+                                        <option value="BA">Bosnia-Herzegovina</option>
+                                        <option value="BW">Botswana</option>
+                                        <option value="BR">Brasil</option>
+                                        <option value="BN">Brunei</option>
+                                        <option value="BG">Bulgaria</option>
+                                        <option value="BF">Burkina Faso</option>
+                                        <option value="BI">Burundi</option>
+                                        <option value="BT">Bután</option>
+                                        <option value="KH">Camboya</option>
+                                        <option value="CM">Camerún</option>
+                                        <option value="CA">Canadá</option>
+                                        <option value="TD">Chad</option>
+                                        <option value="CL">Chile</option>
+                                        <option value="CN">China</option>
+                                        <option value="CY">Chipre</option>
+                                        <option value="CO">Colombia</option>
+                                        <option value="CG">Congo</option>
+                                        <option value="CD">Congo (Rep. Dem.)</option>
+                                        <option value="KP">Corea Del Norte</option>
+                                        <option value="KR">Corea Del Sur</option>
+                                        <option value="CI">Costa De Marfil</option>
+                                        <option value="CR">Costa Rica</option>
+                                        <option value="HR">Croacia</option>
+                                        <option value="CU">Cuba</option>
+                                        <option value="DK">Dinamarca</option>
+                                        <option value="DM">Dominica</option>
+                                        <option value="EC">Ecuador</option>
+                                        <option value="EG">Egipto</option>
+                                        <option value="SV">El Salvador</option>
+                                        <option value="AE">Emiratos Arabes Unidos</option>
+                                        <option value="ER">Eritrea</option>
+                                        <option value="SK">Eslovaquia</option>
+                                        <option value="SI">Eslovenia</option>
+                                        <option value="ES" selected="selected">España</option>
+                                        <option value="EE">Estonia</option>
+                                        <option value="ET">Etiopía</option>
+                                        <option value="PH">Filipinas</option>
+                                        <option value="FI">Finlandia</option>
+                                        <option value="FR">Francia</option>
+                                        <option value="GA">Gabon</option>
+                                        <option value="GM">Gambia</option>
+                                        <option value="GE">Georgia</option>
+                                        <option value="GS">Georgia del Sur e Islas Sandwich</option>
+                                        <option value="GH">Ghana</option>
+                                        <option value="GI">Gibraltar (Reino Unido)</option>
+                                        <option value="GR">Grecia</option>
+                                        <option value="GD">Grenada</option>
+                                        <option value="GL">Groenlandia</option>
+                                        <option value="GP">Guadalupe</option>
+                                        <option value="GU">Guam</option>
+                                        <option value="GT">Guatemala</option>
+                                        <option value="GF">Guayana Francesa</option>
+                                        <option value="GG">Guernesey</option>
+                                        <option value="GN">Guinea</option>
+                                        <option value="GW">Guinea-Bissau</option>
+                                        <option value="GQ">Guinea Ecuatorial</option>
+                                        <option value="GY">Guyana</option>
+                                        <option value="HT">Haití</option>
+                                        <option value="NL">Holanda</option>
+                                        <option value="HN">Honduras</option>
+                                        <option value="HK">Hong Kong</option>
+                                        <option value="HU">Hungría</option>
+                                        <option value="IN">India</option>
+                                        <option value="IO">Indias Británicas Occidentales</option>
+                                        <option value="ID">Indonesia</option>
+                                        <option value="IQ">Irak</option>
+                                        <option value="IR">Irán</option>
+                                        <option value="IE">Irlanda</option>
+                                        <option value="CV">Isla de Cabo Verde</option>
+                                        <option value="IM">Isla de Man</option>
+                                        <option value="CX">Isla de Navidad</option>
+                                        <option value="IS">Islandia</option>
+                                        <option value="AX">Islas Aland</option>
+                                        <option value="BV">Islas Bouvet</option>
+                                        <option value="KY">Islas Caimán</option>
+                                        <option value="CC">Islas Cocos-Keeling</option>
+                                        <option value="KM">Islas Comores</option>
+                                        <option value="CK">Islas Cook</option>
+                                        <option value="FO">Islas Faroe</option>
+                                        <option value="FJ">Islas Fidji</option>
+                                        <option value="HM">Islas Heard y Mcdonald</option>
+                                        <option value="MV">Islas Maldivas</option>
+                                        <option value="FK">Islas Malvinas</option>
+                                        <option value="MP">Islas Marianas</option>
+                                        <option value="MH">Islas Marshall</option>
+                                        <option value="MU">Islas Mauricio</option>
+                                        <option value="NF">Islas Norfolk</option>
+                                        <option value="PN">Islas Pitcairn</option>
+                                        <option value="SB">Islas Salomón</option>
+                                        <option value="TC">Islas Turks y Caicos</option>
+                                        <option value="SJ">Isla Svalbard y Jan Mayen</option>
+                                        <option value="VG">Islas Vírgenes (Británicas)</option>
+                                        <option value="VI">Islas Vírgenes (EEUU)</option>
+                                        <option value="WF">Islas Wallis y Futuna</option>
+                                        <option value="IL">Israel</option>
+                                        <option value="IT">Italia</option>
+                                        <option value="JM">Jamaica</option>
+                                        <option value="JP">Japón</option>
+                                        <option value="JE">Jersey</option>
+                                        <option value="JO">Jordania</option>
+                                        <option value="KZ">Kazajstán</option>
+                                        <option value="KE">Kenia</option>
+                                        <option value="KG">Kirguizistán</option>
+                                        <option value="KI">Kiribati</option>
+                                        <option value="KW">Kuwait</option>
+                                        <option value="LA">Laos</option>
+                                        <option value="LS">Lesotho</option>
+                                        <option value="LV">Letonia</option>
+                                        <option value="LB">Líbano</option>
+                                        <option value="LR">Liberia</option>
+                                        <option value="LY">Libia</option>
+                                        <option value="LI">Liechtenstein</option>
+                                        <option value="LT">Lituania</option>
+                                        <option value="LU">Luxemburgo</option>
+                                        <option value="MO">Macao</option>
+                                        <option value="MK">Macedonia</option>
+                                        <option value="MG">Madagascar</option>
+                                        <option value="MY">Malasia</option>
+                                        <option value="MW">Malawi</option>
+                                        <option value="ML">Mali</option>
+                                        <option value="MT">Malta</option>
+                                        <option value="MA">Marruecos</option>
+                                        <option value="MQ">Martinica</option>
+                                        <option value="MR">Mauritania</option>
+                                        <option value="YT">Mayotte</option>
+                                        <option value="MX">México</option>
+                                        <option value="FM">Micronesia</option>
+                                        <option value="MD">Moldova</option>
+                                        <option value="MC">Mónaco</option>
+                                        <option value="MN">Mongolia</option>
+                                        <option value="ME">Montenegro</option>
+                                        <option value="MS">Montserrat</option>
+                                        <option value="MZ">Mozambique</option>
+                                        <option value="MM">Myanmar</option>
+                                        <option value="NA">Namibia</option>
+                                        <option value="NR">Nauru</option>
+                                        <option value="NP">Nepal</option>
+                                        <option value="NI">Nicaragua</option>
+                                        <option value="NE">Níger</option>
+                                        <option value="NG">Nigeria</option>
+                                        <option value="NU">Niue</option>
+                                        <option value="NO">Noruega</option>
+                                        <option value="NC">Nueva Caledonia</option>
+                                        <option value="NZ">Nueva Zelanda</option>
+                                        <option value="OM">Omán</option>
+                                        <option value="PK">Pakistán</option>
+                                        <option value="PW">Palau</option>
+                                        <option value="PA">Panamá</option>
+                                        <option value="PG">Papua Nueva Guinea</option>
+                                        <option value="PY">Paraguay</option>
+                                        <option value="PE">Perú</option>
+                                        <option value="PF">Polinesia Francesa</option>
+                                        <option value="PL">Polonia</option>
+                                        <option value="PT">Portugal</option>
+                                        <option value="PR/1/1">Puerto Rico</option>
+                                        <option value="QA">Qatar</option>
+                                        <option value="GB">Reino Unido</option>
+                                        <option value="CF">República Centroafricana</option>
+                                        <option value="CZ">República Checa</option>
+                                        <option value="DO">República Dominicana</option>
+                                        <option value="RE">Reunión</option>
+                                        <option value="RW">Ruanda</option>
+                                        <option value="RO">Rumania</option>
+                                        <option value="RU">Rusia</option>
+                                        <option value="VC">S. Vicente y Granadinas</option>
+                                        <option value="EH">Sahara Occidental</option>
+                                        <option value="WS">Samoa</option>
+                                        <option value="AS">Samoa Americana</option>
+                                        <option value="BL">San Bartolomé</option>
+                                        <option value="SM">San Marino</option>
+                                        <option value="MF">San Martín</option>
+                                        <option value="LC">Santa Lucía</option>
+                                        <option value="SN">Senegal</option>
+                                        <option value="RS">Serbia</option>
+                                        <option value="SC">Seychelles</option>
+                                        <option value="SL">Sierra Leona</option>
+                                        <option value="SG">Singapur</option>
+                                        <option value="SY">Siria</option>
+                                        <option value="SO">Somalia</option>
+                                        <option value="LK">Sri Lanka</option>
+                                        <option value="KN">St. Kitts Y Nevis</option>
+                                        <option value="PM">St. Pierre y Miquelon</option>
+                                        <option value="SH">Sta. Elena</option>
+                                        <option value="ST">Sto. Tomé y Príncipe</option>
+                                        <option value="ZA">Sudáfrica</option>
+                                        <option value="SD">Sudán</option>
+                                        <option value="SE">Suecia</option>
+                                        <option value="CH">Suiza</option>
+                                        <option value="SR">Surinam</option>
+                                        <option value="SZ">Swaziland</option>
+                                        <option value="TH">Tailandia</option>
+                                        <option value="TW">Taiwan</option>
+                                        <option value="TZ">Tanzania</option>
+                                        <option value="TJ">Tayikistán</option>
+                                        <option value="TF">Territorios Franceses</option>
+                                        <option value="PS">Territorios Occ. Palestinos</option>
+                                        <option value="TL">Timor Oriental</option>
+                                        <option value="TG">Togo</option>
+                                        <option value="TK">Tokelau</option>
+                                        <option value="TO">Tonga</option>
+                                        <option value="TT">Trinidad y Tobago</option>
+                                        <option value="TN">Túnez</option>
+                                        <option value="TM">Turkmenistán</option>
+                                        <option value="TR">Turquía</option>
+                                        <option value="TV">Tuvalu</option>
+                                        <option value="UM">U.S. Minor Outlaying Islands</option>
+                                        <option value="UA">Ucrania</option>
+                                        <option value="UG">Uganda</option>
+                                        <option value="UY">Uruguay</option>
+                                        <option value="US">USA</option>
+                                        <option value="UZ">Uzbekistán</option>
+                                        <option value="VU">Vanuatu</option>
+                                        <option value="VA">Vaticano</option>
+                                        <option value="VE">Venezuela</option>
+                                        <option value="VN">Vietnam</option>
+                                        <option value="YE">Yemen</option>
+                                        <option value="DJ">Yibuti</option>
+                                        <option value="ZM">Zambia</option>
+                                        <option value="ZW">Zimbabue</option>
+                                    </select>
                                 </div>
                             </div>
-
                             <!-- Código IBAN input-->
                             <div class="form-group">
                                 <label class="col-md-3 control-label" for="cod_iban">Código IBAN<span class="required"> *</span>
                                 </label>
                                 <div class="col-md-9">
-                                    <input id="cod_iban" name="cod_iban" type="text" placeholder="Tu código IBAN" class="form-control">
+                                    <input id="cod_iban" name="cod_iban" type="text" placeholder="Código IBAN del demandante" class="form-control">
                                 </div>
                             </div>
-
                             <!-- Forma de pago radio-->
                             <div class="form-group">
                                 <label class="col-md-3 control-label" for="modo_pago">Forma de pago<span class="required"> *</span>
                                 </label>
                                 <div class="col-md-9">
                                     <label class="radio-inline" for="modo_pago_0">
-                                        <input name="modo_pago" id="modo_pago_0" value="1" checked="checked" type="radio"> Mensual
+                                        <input name="modo_pago" id="modo_pago_0" value="1" checked="checked" type="radio">Mensual
                                     </label>
                                     <label class="radio-inline" for="modo_pago_1">
-                                        <input name="modo_pago" id="modo_pago_1" value="2" type="radio"> Trimestral
+                                        <input name="modo_pago" id="modo_pago_1" value="2" type="radio">Trimestral
                                     </label>
                                     <label class="radio-inline" for="modo_pago_2">
-                                        <input name="modo_pago" id="modo_pago_2" value="3" type="radio"> Anual
+                                        <input name="modo_pago" id="modo_pago_2" value="3" type="radio">Anual
                                     </label>
                                 </div>
                             </div>
-
                         </fieldset>
-
                         <fieldset>
                             <legend class="text-center">Datos de Acceso</legend>
-
                             <!-- Usuario input-->
                             <div class="form-group">
                                 <label class="col-md-3 control-label" for="usuario">Usuario<span class="required"> *</span>
                                 </label>
                                 <div class="col-md-9">
-                                    <input id="usuario" name="usuario" type="text" placeholder="Tu nombre de usuario" class="form-control">
+                                    <input id="usuario" name="usuario" type="text" placeholder="Nombre de usuario" class="form-control">
                                 </div>
                             </div>
-
                             <!-- Contraseña input-->
                             <div class="form-group">
                                 <label class="col-md-3 control-label" for="pass">Contraseña<span class="required"> *</span>
                                 </label>
                                 <div class="col-md-9">
-                                    <input id="pass" name="pass" type="text" placeholder="Tu contraseña" class="form-control">
+                                    <input id="pass" name="pass" type="text" placeholder="Contraseña" class="form-control" type="password">
                                 </div>
                             </div>
-
                             <!-- Re Contraseña input-->
                             <div class="form-group">
                                 <label class="col-md-3 control-label" for="repass">Repite Contraseña<span class="required"> *</span>
                                 </label>
                                 <div class="col-md-9">
-                                    <input id="repass" name="repass" type="text" placeholder="Repite tu contraseña" class="form-control">
+                                    <input id="repass" name="repass" type="text" placeholder="Repite tu contraseña" class="form-control" type="password">
                                 </div>
                             </div>
-
                         </fieldset>
-
-
                         <!-- Form actions -->
                         <div class="form-group">
                             <div class="col-md-12 text-right">
@@ -307,17 +464,18 @@
                 </div>
             </div>
         </div>
-
         <!-- build:js(.) scripts/vendor.js -->
         <!-- bower:js -->
         <script src="bower_components/jquery/dist/jquery.js"></script>
         <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
         <script src="bower_components/jquery-validate/dist/jquery.validate.js"></script>
+        <script src="bower_components/select2/select2.js"></script>
         <!-- endbower -->
         <!-- endbuild -->
-
         <!-- build:js({app,.tmp}) scripts/main.js -->
         <script src="scripts/main.js"></script>
+        <script src="scripts/additional-methods.js"></script>
+        <script src="scripts/messages_es.js"></script>
         <!-- endbuild -->
 </body>
 

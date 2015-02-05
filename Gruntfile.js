@@ -19,8 +19,8 @@ module.exports = function (grunt) {
   // Configurable paths
   var config = {
     app: 'app',
-    //dist: '/var/www/practica_validacion_formulario'
-    dist: 'dist'
+    dist: '/var/www/practica_validacion_formulario'
+    //dist: 'dist'
   };
 
   // Define the configuration for all the tasks
@@ -320,6 +320,11 @@ module.exports = function (grunt) {
         'imagemin',
         'svgmin'
       ]
+    },
+    shell: {
+        dist: {
+            command: 'rm -rf <%= config.dist %>/*'
+        }
     }
   });
 
@@ -363,7 +368,7 @@ module.exports = function (grunt) {
   });
 
   grunt.registerTask('build', [
-    'clean:dist',
+    'shell:dist',
     'wiredep',
     'useminPrepare',
     'concurrent:dist',

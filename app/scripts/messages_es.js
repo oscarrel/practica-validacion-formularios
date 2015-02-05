@@ -3,7 +3,7 @@
  * Locale: ES (Spanish; Español)
  */
 jQuery.extend(jQuery.validator.messages, {
-  lettersonly: "Introduce sólo carácteres.",
+  lettersonly: "No introduzca carácteres numéricos.",
   required: "Este campo es obligatorio.",
   remote: "Por favor, rellena este campo.",
   email: "Por favor, escribe una dirección de correo válida",
@@ -11,9 +11,9 @@ jQuery.extend(jQuery.validator.messages, {
   date: "Por favor, escribe una fecha válida.",
   dateISO: "Por favor, escribe una fecha (ISO) válida.",
   number: "Por favor, escribe un número entero válido.",
-  digits: "Por favor, escribe sólo dígitos.",
+  digits: "Por favor, escribe sólo carácteres numéricos.",
   creditcard: "Por favor, escribe un número de tarjeta válido.",
-  equalTo: "Por favor, escribe el mismo valor de nuevo.",
+  equalTo: "Por favor, escribe el mismo valor anterior de nuevo.",
   accept: "Por favor, escribe un valor con una extensión aceptada.",
   maxlength: jQuery.validator.format("Por favor, no escribas más de {0} caracteres."),
   minlength: jQuery.validator.format("Por favor, no escribas menos de {0} caracteres."),
