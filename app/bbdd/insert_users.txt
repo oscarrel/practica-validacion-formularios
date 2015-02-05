@@ -1,3 +1,0 @@
-insert into usuarios values("ana","ana@mail.com","6617233D");
-insert into usuarios values("oscar","oscar@yahoo.es","29120814P");
-insert into usuarios values("juanda","juandacorreo@gmail.com","25456737S");

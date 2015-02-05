@@ -1,0 +1,7 @@
+//Cambiar pass y root en los php
+
+create database oscar_validacion;
+
+create table t_municipios(cod_muni int(4),cod_prov int(4),municipios varchar(50));
+create table t_provincias (CodProv int(4),provincias varchar(100));
+create table usuarios(usuario varchar(50),email varchar(50),nif varchar(12));

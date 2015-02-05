@@ -1,0 +1,5 @@
+create table usuarios(usuario varchar(50),email varchar(50),nif varchar(12)) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+insert into usuarios values("ana","ana@mail.com","6617233D");
+insert into usuarios values("oscar","oscar@yahoo.es","29120814P");
+insert into usuarios values("juanda","juandacorreo@gmail.com","25456737S");

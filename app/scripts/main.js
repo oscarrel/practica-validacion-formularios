@@ -1,4 +1,7 @@
 $(document).ready(function () {
+    $("#conocer").select2();
+    $("#pais").select2();
+    $("#provincia").select2();
 
     //Reglas validación formulario
     //* Todos los campos con * son requeridos
@@ -174,9 +177,14 @@ $(document).ready(function () {
 
 
     // Funcion para cambiar la provincia en funcion de los dos primeros digitos del codigo postal
-    $("#cp").focusout(function (evento) {
-        $codigo = ($("#cp").val()).substr(0, 2);
-        $("#provincia").val($codigo);
+    $("#cp").change(function () {
+        if ($(this).val() != "") {
+            var dato = $(this).val();
+            if (dato.length >= 2) {
+                dato = dato.substring(0, 2);
+            }
+            $("#provincia").val(dato);
+        }
     });
 
     //  Funcion para rellenar campo de nombre con nombre y usuario
@@ -188,8 +196,8 @@ $(document).ready(function () {
         }
     }
 
-    //  Lanza la funcion rellenar campo cuando cambia el foco
-    $('#apellidos').blur(function (event) {
+    //  Lanza la funcion rellenar campo del nombre del demandante cuando cambia el foco
+    $('#apellidos').focusout(function (event) {
         rellenaNombre();
     });
 
@@ -219,6 +227,21 @@ $(document).ready(function () {
             rellenaNombre();
         }
     });
-    $("#pais").select2();
+
     //https://github.com/t0m/select2-bootstrap-css/tree/bootstrap3
+
+
+    //  Funcion para rellenar campo de nombre del usuario con el email
+    function rellenaUser() {
+        var $nom_user;
+        $nom_user = $("#email").val();
+        if ($nom_user !== ' '||$nom_user !=null) {
+            $("#usuario").val($nom_user);
+        }
+    }
+
+    //  Lanza la funcion rellenar usuario cuando cambia el foco del mail
+    $('#email').focusout(function (event) {
+        rellenaUser();
+    });
 });

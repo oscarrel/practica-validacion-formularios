@@ -291,7 +291,8 @@ module.exports = function (grunt) {
             'images/{,*/}*.webp',
             '{,*/}*.html',
             'styles/fonts/{,*/}*.*',
-            'php/*.*'
+            'php/*.*',
+            'styles/*.*'
           ]
         }, {
           src: 'node_modules/apache-server-configs/dist/.htaccess',
