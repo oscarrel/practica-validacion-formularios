@@ -10,11 +10,11 @@ $(document).ready(function () {
     $('#validForm').validate({
         rules: {
             nombre: {
-                required: true,
+                required: false,
                 lettersonly: true
             },
             apellidos: {
-                required: true,
+                required: false,
                 lettersspace: true
             },
             //Al terminar de rellenar nombre y apellidos
@@ -23,7 +23,7 @@ $(document).ready(function () {
 
             //* Teléfono contendrá solo dígitos y un total de 9.
             telefono: {
-                required: true,
+                required: false,
                 digits: true,
                 minlength: 9,
                 maxlength: 9
@@ -34,17 +34,17 @@ $(document).ready(function () {
             //* email debe ser un correo electrónico válido
             //  (al menos en apariencia)
             email: {
-                required: true,
+                required: false,
                 email: true,
                 remote: "php/validar_email_db.php"
                 //minlength : 6,		
             },
             reemail: {
-                required: true,
+                required: false,
                 equalTo: email
             },
             conocer: {
-                required: true
+                required: false
             },
             //* Por defecto estará marcado como demandante Particular
             //  y como Nombre (apartado Datos de facturación) la combinación de
@@ -56,10 +56,10 @@ $(document).ready(function () {
             //* Los campos CIF/NIF y Nombre/Empresa adecuarán su label
             //  en función del demandante seleccionado.
             demandante: {
-                required: true
+                required: false
             },
             nom_emp: {
-                required: true
+                required: false
             },
             cifnif: {
                 required: true,
@@ -77,7 +77,7 @@ $(document).ready(function () {
                 remote: "php/validar_nif_db.php"
             },
             direccion: {
-                required: true
+                required: false
             },
             //* CP tendrán que ser 5 digitos.
             //  Si son menos se completará con 0 a la izquierda.
@@ -86,45 +86,45 @@ $(document).ready(function () {
             //  la provincia y la localidad de forma automática.
             //  La localidad se rellenará con criterio libre.
             cp: {
-                required: true,
+                required: false,
                 digits: true,
                 maxlength: 5,
                 //remote: "php/validar_cp_db.php"
                 //Función para completar lanzada cuando cambia el foco
             },
             localidad: {
-                required: true
+                required: false
             },
             provincia: {
-                required: true
+                required: false
             },
             pais: {
-                required: true
+                required: false
             },
             //* El código IBAN debe ser válido
 
             cod_iban: {
-                required: true,
+                required: false,
                 iban: true
             },
             modo_pago: {
-                required: true
+                required: false
             },
 
             //* El usuario debe tener al menos 4 caracteres,
             //  se rellenará de modo automático con el correo electrónico
             //  y no podrá ser modificado.
             usuario: {
-                required: true,
+                required: false,
                 minlength: 4
             },
             //* La contraseña se debe forzar a que sea compleja.
             pass: {
-                required: true,
+                required: false,
                 complexify: true
             },
             repass: {
-                required: true,
+                required: false,
                 equalTo: pass
             }
         },
@@ -144,16 +144,21 @@ $(document).ready(function () {
         //  El usuario podrá cancelar la operación.
 
         submitHandler: function () {
-            var opcionp = parseInt($('#modo_pago').val());
             var pago;
-            if (opcionp==1){
+            if ($("#modo_pago_0").is(':checked')) {
                 pago="mensual será de 50€";
-            }else if(opcionp==2){
+            }
+            if ($("#modo_pago_1").is(':checked')) {
                 pago="trimestral será de 140€";
-            }else{
+            }
+            if ($("#modo_pago_2").is(':checked')) {
                 pago="anual será de 550€";
             }
-            alert('Dado de alta correctamente, su próxima cuota de tipo '+pago+' ¿Desea continuar?', 'Alert Dialog');
+
+            var alerta=confirm('Dado de alta correctamente, su próxima cuota de tipo '+pago+' ¿Desea continuar?');
+            if(alerta==true){
+                window.location.href = "alta.html";
+            }
         }
 
 
