@@ -1,7 +1,9 @@
 $(document).ready(function () {
     $("#conocer").select2();
     $("#pais").select2();
-    $("#provincia").select2();
+    //El select2 me cambia el id y el value del html
+    //Así que hasta que lo configure no aplicaré el plugin aqui
+    //$("#provincia").select2();
 
     //Reglas validación formulario
     //* Todos los campos con * son requeridos
@@ -13,7 +15,7 @@ $(document).ready(function () {
             },
             apellidos: {
                 required: true,
-                lettersonly: true
+                lettersspace: true
             },
             //Al terminar de rellenar nombre y apellidos
             //se escriben por defecto en el campo "demandante"
@@ -61,17 +63,17 @@ $(document).ready(function () {
             },
             cifnif: {
                 required: true,
-                cifES: function () {
-                    if ($("#par").is(':checked')) {
+                nifES: function() {
+                    if ($("#particular").is(':checked')) {
                         return true;
                     }
                 },
-                nifES: function () {
+                cifES: function() {
                     if ($("#empresa").is(':checked')) {
                         return true;
                     }
                 },
-                //cifES: true,
+                //cifES: true
                 remote: "php/validar_nif_db.php"
             },
             direccion: {
@@ -86,20 +88,18 @@ $(document).ready(function () {
             cp: {
                 required: true,
                 digits: true,
-                maxlength: 5
+                maxlength: 5,
+                //remote: "php/validar_cp_db.php"
                 //Función para completar lanzada cuando cambia el foco
             },
             localidad: {
-                required: true,
-                lettersonly: true
+                required: true
             },
             provincia: {
-                required: true,
-                lettersonly: true
+                required: true
             },
             pais: {
-                required: true,
-                lettersonly: true
+                required: true
             },
             //* El código IBAN debe ser válido
 
@@ -120,8 +120,8 @@ $(document).ready(function () {
             },
             //* La contraseña se debe forzar a que sea compleja.
             pass: {
-                required: true
-                //Añadir plugin complexity
+                required: true,
+                complexify: true
             },
             repass: {
                 required: true,
@@ -144,18 +144,16 @@ $(document).ready(function () {
         //  El usuario podrá cancelar la operación.
 
         submitHandler: function () {
-            if (parseInt($("#modo_pago").val()) == 1) {
-                var alerta = confirm("¡Envíado! Va a ser dado de alta. Su primera cuota será de 50€ (Modo de pago mensual) ¿Desea continuar?");
+            var opcionp = parseInt($('#modo_pago').val());
+            var pago;
+            if (opcionp==1){
+                pago="mensual será de 50€";
+            }else if(opcionp==2){
+                pago="trimestral será de 140€";
+            }else{
+                pago="anual será de 550€";
             }
-            if (parseInt($("#modo_pago").val()) == 2) {
-                var alerta = confirm("¡Envíado! Va a ser dado de alta. Su primera cuota será de 140€ (Modo de pago trimestral) ¿Desea continuar?");
-            }
-            if (parseInt($("#modo_pago").val()) == 3) {
-                var alerta = confirm("¡Envíado! Va a ser dado de alta. Su primera cuota será de 550€ (Modo de pago anual) ¿Desea continuar?");
-            }
-            if (alerta == true) {
-                window.location.href = "bienvenida.html";
-            }
+            alert('Dado de alta correctamente, su próxima cuota de tipo '+pago+' ¿Desea continuar?', 'Alert Dialog');
         }
 
 
@@ -173,10 +171,12 @@ $(document).ready(function () {
                 caracteres = $('#cp').val();
             }
         }
+        caracteres = caracteres.substring(0, 2);
+        $("#provincia").val(caracteres);
     });
 
 
-    // Funcion para cambiar la provincia en funcion de los dos primeros digitos del codigo postal
+/*    // Funcion para cambiar la provincia en funcion de los dos primeros digitos del codigo postal
     $("#cp").change(function () {
         if ($(this).val() != "") {
             var dato = $(this).val();
@@ -185,7 +185,7 @@ $(document).ready(function () {
             }
             $("#provincia").val(dato);
         }
-    });
+    });*/
 
     //  Funcion para rellenar campo de nombre con nombre y usuario
     function rellenaNombre() {
@@ -244,4 +244,40 @@ $(document).ready(function () {
     $('#email').focusout(function (event) {
         rellenaUser();
     });
+
+/*
+    $('#password').focusin(function() {
+        $('#password').complexify({}, function(valid, complexity){
+            $('#progressBar').val(complexity);
+        });
+}); */
+
+
+$("#cp").focusout(function() {
+    var dato = $(this).val();
+    if (dato == ""||dato==00||dato<1000||dato>52999) {
+        $("select[id='localidad']").first().html('<option>No existe localidad para ese codigo</option>');
+    }else{
+        $.ajax({
+            type: "POST",
+            dataType: "html",
+            url: "php/localidad_db.php",
+            data: {
+                zip: dato
+            },
+            success: function(opciones){
+                //$("#localidad").html(opciones);
+                $("select[id='localidad']").html(opciones);
+            }   
+        });
+    }
+});
+
+
+
+
+
+
+
+
 });

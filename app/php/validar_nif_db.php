@@ -15,10 +15,10 @@ try {
 }
 /* Para hacer debug cargaríamos a mano el parámetro, descomentaríamos la siguiente línea: */
 //$_REQUEST['nif'] = "73003600A";
-if (isset($_REQUEST['documentNumber'])) {
+if (isset($_REQUEST['cifnif'])) {
     /* La línea siguiente la podemos descomentar para ver desde firebug-xhr si se pasa bien el parámetro desde el formulario */
     //echo $_REQUEST['nif'];
-    $nif = $_REQUEST['documentNumber'];
+    $nif = $_REQUEST['cifnif'];
     $sql = $db->prepare("SELECT * FROM usuarios WHERE nif=?");
     $sql->bindParam(1, $nif, PDO::PARAM_STR);
     $sql->execute();
@@ -35,7 +35,7 @@ if (isset($_REQUEST['documentNumber'])) {
        $valid='true';
     }
 }
+echo $valid;
 $sql=null;
 $db = null;
-echo $valid;
 ?>

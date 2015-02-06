@@ -1,70 +1,86 @@
+//******************************************************************************
 /*
- * Código de identificación fiscal ( CIF ) is the tax identification code for Spanish legal entities
- * Further rules can be found in Spanish on http://es.wikipedia.org/wiki/C%C3%B3digo_de_identificaci%C3%B3n_fiscal
- */
-$.validator.addMethod("cifES", function (value) {
+* Código de identificación fiscal ( CIF ) is the tax identification code for Spanish legal entities
+* Further rules can be found in Spanish on http://es.wikipedia.org/wiki/C%C3%B3digo_de_identificaci%C3%B3n_fiscal
+*/
+$.validator.addMethod( "cifES", function( value ) {
 	"use strict";
-
 	var num = [],
-		controlDigit, sum, i, count, tmp, secondDigit;
-
+	controlDigit, sum, i, count, tmp, secondDigit;
 	value = value.toUpperCase();
-
 	// Quick format test
 	if ( !value.match( "((^[A-Z]{1}[0-9]{7}[A-Z0-9]{1}$|^[T]{1}[A-Z0-9]{8}$)|^[0-9]{8}[A-Z]{1}$)" ) ) {
 		return false;
 	}
-
 	for ( i = 0; i < 9; i++ ) {
 		num[ i ] = parseInt( value.charAt( i ), 10 );
 	}
-
 	// Algorithm for checking CIF codes
 	sum = num[ 2 ] + num[ 4 ] + num[ 6 ];
 	for ( count = 1; count < 8; count += 2 ) {
 		tmp = ( 2 * num[ count ] ).toString();
 		secondDigit = tmp.charAt( 1 );
-
 		sum += parseInt( tmp.charAt( 0 ), 10 ) + ( secondDigit === "" ? 0 : parseInt( secondDigit, 10 ) );
 	}
-
-	/* The first (position 1) is a letter following the following criteria:
-	 *	A. Corporations
-	 *	B. LLCs
-	 *	C. General partnerships
-	 *	D. Companies limited partnerships
-	 *	E. Communities of goods
-	 *	F. Cooperative Societies
-	 *	G. Associations
-	 *	H. Communities of homeowners in horizontal property regime
-	 *	J. Civil Societies
-	 *	K. Old format
-	 *	L. Old format
-	 *	M. Old format
-	 *	N. Nonresident entities
-	 *	P. Local authorities
-	 *	Q. Autonomous bodies, state or not, and the like, and congregations and religious institutions
-	 *	R. Congregations and religious institutions (since 2008 ORDER EHA/451/2008)
-	 *	S. Organs of State Administration and regions
-	 *	V. Agrarian Transformation
-	 *	W. Permanent establishments of non-resident in Spain
-	 */
+/* The first (position 1) is a letter following the following criteria:
+* A. Corporations
+* B. LLCs
+* C. General partnerships
+* D. Companies limited partnerships
+* E. Communities of goods
+* F. Cooperative Societies
+* G. Associations
+* H. Communities of homeowners in horizontal property regime
+* J. Civil Societies
+* K. Old format
+* L. Old format
+* M. Old format
+* N. Nonresident entities
+* P. Local authorities
+* Q. Autonomous bodies, state or not, and the like, and congregations and religious institutions
+* R. Congregations and religious institutions (since 2008 ORDER EHA/451/2008)
+* S. Organs of State Administration and regions
+* V. Agrarian Transformation
+* W. Permanent establishments of non-resident in Spain
+*/
 	if ( /^[ABCDEFGHJNPQRSUVW]{1}/.test( value ) ) {
 		sum += "";
 		controlDigit = 10 - parseInt( sum.charAt( sum.length - 1 ), 10 );
 		value += controlDigit;
 		return ( num[ 8 ].toString() === String.fromCharCode( 64 + controlDigit ) || num[ 8 ].toString() === value.charAt( value.length - 1 ) );
 	}
-
 	return false;
+}, "Introduce un número válido de CIF" );
 
-}, "Por favor, especifique un número de CIF válido" );
+
+//******************************************************************************
+/*
+* The Número de Identificación Fiscal ( NIF ) is the way tax identification used in Spain for individuals
+*/
+$.validator.addMethod( "nifES", function( value ) {
+	"use strict";
+	value = value.toUpperCase();
+	// Basic format test
+	if ( !value.match("((^[A-Z]{1}[0-9]{7}[A-Z0-9]{1}$|^[T]{1}[A-Z0-9]{8}$)|^[0-9]{8}[A-Z]{1}$)") ) {
+		return false;
+	}
+	// Test NIF
+	if ( /^[0-9]{8}[A-Z]{1}$/.test( value ) ) {
+		return ( "TRWAGMYFPDXBNJZSQVHLCKE".charAt( value.substring( 8, 0 ) % 23 ) === value.charAt( 8 ) );
+	}
+	// Test specials NIF (starts with K, L or M)
+	if ( /^[KLM]{1}/.test( value ) ) {
+		return ( value[ 8 ] === String.fromCharCode( 64 ) );
+	}
+	return false;
+}, "Introduce un número válido de NIF" );
+
 
 /**
  * IBAN is the international bank account number.
  * It has a country - specific format, that is checked here too
  */
-$.validator.addMethod("iban", function(value, element) {
+ $.validator.addMethod("iban", function(value, element) {
 	// some quick simple tests to prevent needless work
 	if (this.optional(element)) {
 		return true;
@@ -72,11 +88,11 @@ $.validator.addMethod("iban", function(value, element) {
 
 	// remove spaces and to upper case
 	var iban = value.replace(/ /g, "").toUpperCase(),
-		ibancheckdigits = "",
-		leadingZeroes = true,
-		cRest = "",
-		cOperator = "",
-		countrycode, ibancheck, charAt, cChar, bbanpattern, bbancountrypatterns, ibanregexp, i, p;
+	ibancheckdigits = "",
+	leadingZeroes = true,
+	cRest = "",
+	cOperator = "",
+	countrycode, ibancheck, charAt, cChar, bbanpattern, bbancountrypatterns, ibanregexp, i, p;
 
 	if (!(/^([a-zA-Z0-9]{4} ){2,8}[a-zA-Z0-9]{1,4}|[a-zA-Z0-9]{12,34}$/.test(iban))) {
 		return false;
@@ -187,50 +203,49 @@ $.validator.addMethod("iban", function(value, element) {
 	return cRest === 1;
 }, "Por favor, introduzca un IBAN válido");
 
+
+
 $.validator.addMethod("integer", function(value, element) {
 	return this.optional(element) || /^-?\d+$/.test(value);
 }, "Por favor, un número no decimal positivo o negativo");
+
 
 
 $.validator.addMethod("lettersonly", function(value, element) {
 	return this.optional(element) || /^[a-z]+$/i.test(value);
 }, "Por favor, solo letras");
 
+
+$.validator.addMethod("lettersspace", function(value, element) {
+	return this.optional(element) || /^[a-zA-Z\s]*$/i.test(value);
+}, "Por favor, solo letras y espacios");
+
+
+
 $.validator.addMethod("letterswithbasicpunc", function(value, element) {
 	return this.optional(element) || /^[a-z\-.,()'"\s]+$/i.test(value);
 }, "Por favor, solo letras y puntuación");
+
+
 
 $.validator.addMethod("mobileNL", function(value, element) {
 	return this.optional(element) || /^((\+|00(\s|\s?\-\s?)?)31(\s|\s?\-\s?)?(\(0\)[\-\s]?)?|0)6((\s|\s?\-\s?)?[0-9]){8}$/.test(value);
 }, "Por favor, especifique un número de móvil válido");
 
 
-/*
- * The Número de Identificación Fiscal ( NIF ) is the way tax identification used in Spain for individuals
- */
-$.validator.addMethod( "nifES", function( value ) {
-	"use strict";
-
-	value = value.toUpperCase();
-
-	// Basic format test
-	if ( !value.match("((^[A-Z]{1}[0-9]{7}[A-Z0-9]{1}$|^[T]{1}[A-Z0-9]{8}$)|^[0-9]{8}[A-Z]{1}$)") ) {
-		return false;
-	}
-
-	// Test NIF
-	if ( /^[0-9]{8}[A-Z]{1}$/.test( value ) ) {
-		return ( "TRWAGMYFPDXBNJZSQVHLCKE".charAt( value.substring( 8, 0 ) % 23 ) === value.charAt( 8 ) );
-	}
-	// Test specials NIF (starts with K, L or M)
-	if ( /^[KLM]{1}/.test( value ) ) {
-		return ( value[ 8 ] === String.fromCharCode( 64 ) );
-	}
-
-	return false;
-
-}, "Por favor, especifique un número válido de NIF" );
 
 $.validator.addMethod("nowhitespace", function(value, element) {
-	return this.optional(element) || /^\S+$/i.test(value);
+return this.optional(element) || /^\S+$/i.test(value);
 }, "Por favor, sin espacios en blanco");
+
+
+
+//*************************************************************
+//CONTRASEÑA BUENA
+$.validator.addMethod("complexify", function(value,element) {
+	var compleja=$("#progressBar").val();
+	if(compleja<40){
+		return false;
+	}
+	return true;
+}, "Complejidad de la contraseña demasiado baja");
