@@ -1,9 +1,10 @@
 $(document).ready(function () {
+    //Codigo de plugin encontrado en:
+    //https://github.com/t0m/select2-bootstrap-css/tree/bootstrap3
     $("#conocer").select2();
     $("#pais").select2();
     //El select2 me cambia el id y el value del html
-    //Así que hasta que lo configure no aplicaré el plugin aqui
-    //$("#provincia").select2();
+    //Así que hasta que lo configure no aplicaré el plugin en provincia y localida
 
     //Reglas validación formulario
     //* Todos los campos con * son requeridos
@@ -93,10 +94,10 @@ $(document).ready(function () {
                 //Función para completar lanzada cuando cambia el foco
             },
             localidad: {
-                required: false
+                required: true
             },
             provincia: {
-                required: false
+                required: true
             },
             pais: {
                 required: false
@@ -160,15 +161,11 @@ $(document).ready(function () {
                 window.location.href = "alta.html";
             }
         }
-
-
-
-
-
     });
 
-    //  Funcion para completar el codigo postal con ceros
-    $('#cp').focusout(function () {
+//  Funcion para completar el codigo postal con ceros
+//  y leer los dos primeros digitos para seleccionar la provincia adecuada
+    function leeCodPos(){
         var caracteres = $('#cp').val();
         if (caracteres.length > 0 && caracteres.match(/^\d+$/)) {
             while (caracteres.length <= 4) {
@@ -178,19 +175,21 @@ $(document).ready(function () {
         }
         caracteres = caracteres.substring(0, 2);
         $("#provincia").val(caracteres);
+    }
+
+
+    //  Cuando el usuario ha escrito el codigo postal llama a la funcion para seleccionar la provincia
+    $('#cp').focusout(function () {
+        leeCodPos();
     });
 
 
-/*    // Funcion para cambiar la provincia en funcion de los dos primeros digitos del codigo postal
-    $("#cp").change(function () {
-        if ($(this).val() != "") {
-            var dato = $(this).val();
-            if (dato.length >= 2) {
-                dato = dato.substring(0, 2);
-            }
-            $("#provincia").val(dato);
-        }
-    });*/
+    //  Si el usuario cambia el select de la provincia, vuelve a leer el código
+    //  y selecciona la provincia que corresponda a ese código ignorando la seleccion
+    $("#provincia").change(function (evento) {
+        leeCodPos();
+    })
+
 
     //  Funcion para rellenar campo de nombre con nombre y usuario
     function rellenaNombre() {
@@ -201,10 +200,12 @@ $(document).ready(function () {
         }
     }
 
+
     //  Lanza la funcion rellenar campo del nombre del demandante cuando cambia el foco
     $('#apellidos').focusout(function (event) {
         rellenaNombre();
     });
+
 
     //  Funcion para cambiar el texto de la etiqueta del nombre y del cifnif
     //  según sea el demandante particular o empresa
@@ -218,6 +219,7 @@ $(document).ready(function () {
             $("#cifnif").attr('placeholder', 'CIF de la empresa');
         }
     });
+
 
     //  Si el usuario cambia el radio check del demandante
     //  y lo vuelve a poner en particular
@@ -233,7 +235,6 @@ $(document).ready(function () {
         }
     });
 
-    //https://github.com/t0m/select2-bootstrap-css/tree/bootstrap3
 
 
     //  Funcion para rellenar campo de nombre del usuario con el email
@@ -270,9 +271,8 @@ $("#cp").focusout(function() {
             data: {
                 zip: dato
             },
-            success: function(opciones){
-                //$("#localidad").html(opciones);
-                $("select[id='localidad']").html(opciones);
+            success: function(opciones){          
+                $("#localidad").html(opciones);
             }   
         });
     }

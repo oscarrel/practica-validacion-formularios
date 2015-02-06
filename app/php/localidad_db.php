@@ -20,6 +20,14 @@ if (isset($_POST['zip'])) {
     $sql->bindParam(1, $cp);
     $sql->execute();
 
+    $valid;
+    if ($sql->rowCount() > 0) {
+        $valid= 'true';
+    } else {
+       $valid='false';
+       echo "<option>No existe localidad para ese codigo</option>";
+    }
+
     while ($okey=$sql->fetch()) {
         $opciones.= "<option value='{$okey['CodPostal']}'>{$okey['Municipio']}</option>";
     }

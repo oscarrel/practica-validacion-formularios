@@ -240,8 +240,7 @@ return this.optional(element) || /^\S+$/i.test(value);
 
 
 
-//*************************************************************
-//CONTRASEÑA BUENA
+//Contraseña segura
 $.validator.addMethod("complexify", function(value,element) {
 	var compleja=$("#progressBar").val();
 	if(compleja<40){
