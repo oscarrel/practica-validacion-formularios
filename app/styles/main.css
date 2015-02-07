@@ -1,5 +1,5 @@
 body {
-  background: #fafafa;
+  background: #fff6dc;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   color: #333;
 }
@@ -28,8 +28,61 @@ body {
   padding: 0.2em 0;
 }
 
-body {padding-top:20px;}
+
 
 .required, .error{
   color:red;
+}
+
+#boton{
+  margin-top: 30px;
+  margin-bottom: 20px;
+}
+
+.row{
+  padding-bottom: 65px;
+}
+
+section{padding-top:65px;}
+
+h1{
+  padding-top:35px;
+}
+
+a {
+    background: #dfd9f4;
+}
+
+
+.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
+    background-color: #ffe49a;
+}
+
+.bt{
+    background-color: #ffe49a;
+    border-right-style: solid;
+    border-right-width: 1px;
+    border-right-color:#b5a3f4;
+}
+
+
+#myScrollspy{
+    background: #dfd9f4;
+}
+
+.well, .well-sm{
+    background: #eeebfa;
+}
+
+legend{
+    border-bottom-color:#dfd9f4;
+}
+
+#barra{
+  margin-right: 20px;
+}
+
+
+.navbar-header{
+  background: #dfd9f4;
 }

@@ -25,7 +25,7 @@ if (isset($_POST['zip'])) {
         $valid= 'true';
     } else {
        $valid='false';
-       echo "<option>No existe localidad para ese codigo</option>";
+       echo '<option value="0">No existe localidad para ese codigo</option>';
     }
 
     while ($okey=$sql->fetch()) {

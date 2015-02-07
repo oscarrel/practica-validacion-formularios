@@ -100,8 +100,11 @@ $(document).ready(function () {
                 //remote: "php/validar_cp_db.php"
                 //Función para completar lanzada cuando cambia el foco
             },
+            //* Si no encuentra una localidad que corresponda con ese código postal
+            //  devuelve un valor de cero que el método "sinlocalidad" detecta para
+            //  poder validar o no el campo
             localidad: {
-                required: true
+                sinlocalidad:true
             },
             //* Ponemos requerido a true, pero provincia viene definido
             //  por el código postal, y código postal es obligatorio, así
@@ -176,9 +179,14 @@ $(document).ready(function () {
                 pago="anual será de 550€";
             }
 
-            var alerta=confirm('Dado de alta correctamente, su próxima cuota de tipo '+pago+' ¿Desea continuar?');
+
+            var alerta=confirm('Va a ser dado de alta y su próxima cuota de tipo '+pago+' ¿Desea continuar?');
             if(alerta==true){
-                window.location.href = "alta.html";
+                alert("Ha sido dado de alta corectamente");
+                window.location.href = "index.html";
+            }else{
+                alert("Ha cancelado la operación");
+                window.location.href = "index.html";
             }
         }
     });
@@ -287,7 +295,7 @@ $(document).ready(function () {
     $("#cp").focusout(function() {
         var dato = $(this).val();
         if (dato == ""||dato==00||dato<1000||dato>52999) {
-            $("select[id='localidad']").first().html('<option>No existe localidad para ese codigo</option>');
+            $("select[id='localidad']").first().html('<option value="0">No existe localidad para ese codigo</option>');
         }else{
             $.ajax({
                 type: "POST",
@@ -323,3 +331,20 @@ $(document).ready(function () {
     });
 
 });
+
+
+//  Cuando la barra de navegación de Bootstrap se colapsa,
+//  la accion por defecto al clicar en el menú es mantenerlo abierto.
+//  Con esta funcion el menú se cierra automáticamente
+//  cuando se hace clic en un elemento de menú.
+$(document).ready(function () {
+    $(".navbar-nav li a").click(function(event) {
+        $(".navbar-collapse").collapse('hide');
+    });
+});
+
+
+//  Activa el comportamiento scrollspy de bootstrap
+//  Los enlaces de la barra de navegación se iluminarán
+//  al hacer scroll cuando coincida con su sección 
+$('#navbar').scrollspy();

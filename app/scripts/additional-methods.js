@@ -258,3 +258,13 @@ $.validator.addMethod( "nivelComplejidad", function( value,element ) {
 		return true;
 	}
 }, "Introduzca una contraseña más compleja");
+
+
+$.validator.addMethod( "sinlocalidad", function( value,element ) {
+	var valLocalidad=$("#localidad").val();
+	if(valLocalidad==0){
+		return false;
+	}else{
+		return true;
+	}
+}, "Introduzca un codigo postal válido");
