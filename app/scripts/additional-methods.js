@@ -221,6 +221,15 @@ $.validator.addMethod("lettersspace", function(value, element) {
 }, "Por favor, solo letras y espacios");
 
 
+$.validator.addMethod("spanishletters", function(value, element) {
+	return this.optional(element) || /^[a-zA-ZñÑáéíóúÁÉÍÓÚ]+$/i.test(value);
+}, "Por favor, solo letras");
+
+
+$.validator.addMethod("spanishlettersspace", function(value, element) {
+	return this.optional(element) || /^[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]*$/i.test(value);
+}, "Por favor, solo letras y espacios");
+
 
 $.validator.addMethod("letterswithbasicpunc", function(value, element) {
 	return this.optional(element) || /^[a-z\-.,()'"\s]+$/i.test(value);
@@ -240,11 +249,12 @@ return this.optional(element) || /^\S+$/i.test(value);
 
 
 
-//Contraseña segura
-$.validator.addMethod("complexify", function(value,element) {
-	var compleja=$("#progressBar").val();
-	if(compleja<40){
+
+$.validator.addMethod( "nivelComplejidad", function( value,element ) {
+	var valorComplejidad=$("#nivelComplejidad").val();
+	if(valorComplejidad<40){
 		return false;
+	}else{
+		return true;
 	}
-	return true;
-}, "Complejidad de la contraseña demasiado baja");
+}, "Introduzca una contraseña más compleja");

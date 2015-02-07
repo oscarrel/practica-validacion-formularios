@@ -21,11 +21,12 @@
 </head>
 
 <body>
-    <h1>Práctica validación formularios</h1>
-    <p>Este es el enlace a <a href="https://github.com/oscarrel/practica-validacion-formularios">mi respositorio en GitHub</a>, donde está la versión de desarrollo.</p>
+    
     <div class="container">
         <div class="row">
             <div class="col-md-9 col-md-offset-1">
+                <h1>Práctica validación formularios</h1>
+                <p>Este es el enlace a <a href="https://github.com/oscarrel/practica-validacion-formularios">mi respositorio en GitHub</a>, donde está la versión de desarrollo.</p>
                 <div class="well well-sm">
                     <form id="validForm" class="form-horizontal" action="" method="post">
                         <fieldset>
@@ -125,7 +126,7 @@
                             </div>
                             <!-- Código Postal input-->
                             <div class="form-group">
-                            <label class="col-md-3 control-label" for="cp">CP<span class="required"> *</span>
+                                <label class="col-md-3 control-label" for="cp">CP<span class="required"> *</span>
                                 </label>
                                 <div class="col-md-9">
                                     <input id="cp" name="cp" type="text" placeholder="Código postal del demandante" class="form-control">
@@ -136,8 +137,8 @@
                                 <label class="col-md-3 control-label" for="provincia">Provincia<span class="required"> *</span>
                                 </label>
                                 <div class="col-md-9">
-                                    <select id="provincia" name="provincia" class="form-control" disabled>
-                                        <option value="">Seleccione una opción</option>
+                                    <select id="<provincia></provincia>" name="provincia" class="form-control" disabled>
+                                        <option value="">Seleccionada con el código postal</option>
                                         <option value="01">Alava</option>
                                         <option value="02">Albacete</option>
                                         <option value="03">Alicante</option>
@@ -489,7 +490,7 @@
                                 <label class="col-md-3 control-label" for="usuario">Usuario<span class="required"> *</span>
                                 </label>
                                 <div class="col-md-9">
-                                    <input id="usuario" name="usuario" type="text" placeholder="Nombre de usuario" class="form-control" readonly>
+                                    <input id="usuario" name="usuario" type="text" placeholder="Nombre de usuario" class="form-control" disabled="">
                                 </div>
                             </div>
                             <!-- Contraseña input-->
@@ -498,6 +499,8 @@
                                 </label>
                                 <div class="col-md-9">
                                     <input id="pass" name="pass" type="text" placeholder="Contraseña" class="form-control" type="password">
+                                    <meter value="0" id="nivelComplejidad" min="0"low="20" high="40" max="100"  ></meter>
+                                    <label id="labelComplejidad"></label>
                                 </div>
                             </div>
                             <!-- Re Contraseña input-->
@@ -525,6 +528,7 @@
         <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
         <script src="bower_components/jquery-validate/dist/jquery.validate.js"></script>
         <script src="bower_components/select2/select2.js"></script>
+        <script src="bower_components/jquery.complexify.js/jquery.complexify.js"></script>
         <!-- endbower -->
         <!-- endbuild -->
         <!-- build:js({app,.tmp}) scripts/main.js -->

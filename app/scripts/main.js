@@ -11,12 +11,12 @@ $(document).ready(function () {
     $('#validForm').validate({
         rules: {
             nombre: {
-                required: false,
-                lettersonly: true
+                required: true,
+                spanishletters: true
             },
             apellidos: {
-                required: false,
-                lettersspace: true
+                required: true,
+                spanishlettersspace: true
             },
             //Al terminar de rellenar nombre y apellidos
             //se escriben por defecto en el campo "demandante"
@@ -24,7 +24,7 @@ $(document).ready(function () {
 
             //* Teléfono contendrá solo dígitos y un total de 9.
             telefono: {
-                required: false,
+                required: true,
                 digits: true,
                 minlength: 9,
                 maxlength: 9
@@ -35,17 +35,20 @@ $(document).ready(function () {
             //* email debe ser un correo electrónico válido
             //  (al menos en apariencia)
             email: {
-                required: false,
+                required: true,
                 email: true,
-                remote: "php/validar_email_db.php"
-                //minlength : 6,		
+                remote: "php/validar_email_db.php",
+                minlength : 4		
             },
             reemail: {
-                required: false,
+                required: true,
                 equalTo: email
             },
+            //* Ponemos requerido a true, pero en realidad SIEMPRE va a haber
+            //  una opcion seleccionada, sea por el usuario o la que deje
+            //  por defecto
             conocer: {
-                required: false
+                required: true
             },
             //* Por defecto estará marcado como demandante Particular
             //  y como Nombre (apartado Datos de facturación) la combinación de
@@ -56,11 +59,15 @@ $(document).ready(function () {
 
             //* Los campos CIF/NIF y Nombre/Empresa adecuarán su label
             //  en función del demandante seleccionado.
+
+            //* Ponemos requerido a true, pero en realidad SIEMPRE va a haber
+            //  una opcion seleccionada, sea por el usuario o la que deje
+            //  por defecto
             demandante: {
-                required: false
+                required: true
             },
             nom_emp: {
-                required: false
+                required: true
             },
             cifnif: {
                 required: true,
@@ -78,7 +85,7 @@ $(document).ready(function () {
                 remote: "php/validar_nif_db.php"
             },
             direccion: {
-                required: false
+                required: true
             },
             //* CP tendrán que ser 5 digitos.
             //  Si son menos se completará con 0 a la izquierda.
@@ -87,7 +94,7 @@ $(document).ready(function () {
             //  la provincia y la localidad de forma automática.
             //  La localidad se rellenará con criterio libre.
             cp: {
-                required: false,
+                required: true,
                 digits: true,
                 maxlength: 5,
                 //remote: "php/validar_cp_db.php"
@@ -96,36 +103,49 @@ $(document).ready(function () {
             localidad: {
                 required: true
             },
+            //* Ponemos requerido a true, pero provincia viene definido
+            //  por el código postal, y código postal es obligatorio, así
+            //  que aunque no saque mensaje SIEMPRE va a ser requerido
             provincia: {
                 required: true
             },
+            //* Ponemos requerido a true, pero en realidad SIEMPRE va a haber
+            //  una opcion seleccionada, sea por el usuario o la que deje
+            //  por defecto, en este caso: ESPAÑA
             pais: {
-                required: false
+                required: true
             },
             //* El código IBAN debe ser válido
 
             cod_iban: {
-                required: false,
+                required: true,
                 iban: true
             },
+            //* Ponemos requerido a true, pero en realidad SIEMPRE va a haber
+            //  una opcion seleccionada, sea por el usuario o la que deje
+            //  por defecto
             modo_pago: {
-                required: false
+                required: true
             },
 
             //* El usuario debe tener al menos 4 caracteres,
             //  se rellenará de modo automático con el correo electrónico
             //  y no podrá ser modificado.
+
+            //* Ponemos requerido a true, pero usuario viene definido
+            //  por el mail, y mail es obligatorio, así
+            //  que aunque no saque mensaje SIEMPRE va a ser requerido
             usuario: {
-                required: false,
+                required: true,
                 minlength: 4
             },
             //* La contraseña se debe forzar a que sea compleja.
             pass: {
-                required: false,
-                complexify: true
+                required: true,
+                nivelComplejidad: true
             },
             repass: {
-                required: false,
+                required: true,
                 equalTo: pass
             }
         },
@@ -163,8 +183,8 @@ $(document).ready(function () {
         }
     });
 
-//  Funcion para completar el codigo postal con ceros
-//  y leer los dos primeros digitos para seleccionar la provincia adecuada
+    //  Funcion para completar el codigo postal con ceros
+    //  y leer los dos primeros digitos para seleccionar la provincia adecuada
     function leeCodPos(){
         var caracteres = $('#cp').val();
         if (caracteres.length > 0 && caracteres.match(/^\d+$/)) {
@@ -184,12 +204,13 @@ $(document).ready(function () {
     });
 
 
+    /*
     //  Si el usuario cambia el select de la provincia, vuelve a leer el código
     //  y selecciona la provincia que corresponda a ese código ignorando la seleccion
     $("#provincia").change(function (evento) {
         leeCodPos();
     })
-
+    */
 
     //  Funcion para rellenar campo de nombre con nombre y usuario
     function rellenaNombre() {
@@ -201,7 +222,15 @@ $(document).ready(function () {
     }
 
 
-    //  Lanza la funcion rellenar campo del nombre del demandante cuando cambia el foco
+    //  Lanza la funcion rellenar campo del nombre del demandante
+    //  cuando cambia el foco del nombre
+    $('#nombre').focusout(function (event) {
+        rellenaNombre();
+    });
+
+
+    //  Lanza la funcion rellenar campo del nombre del demandante
+    //  cuando cambia el foco de apellidos
     $('#apellidos').focusout(function (event) {
         rellenaNombre();
     });
@@ -251,38 +280,46 @@ $(document).ready(function () {
         rellenaUser();
     });
 
-/*
-    $('#password').focusin(function() {
-        $('#password').complexify({}, function(valid, complexity){
-            $('#progressBar').val(complexity);
+
+    //  Función para rellenar la localidad mediante el código postal
+    //  via ajax, si introducimos un código postal que no exista en la
+    //  base de datos, te avisa
+    $("#cp").focusout(function() {
+        var dato = $(this).val();
+        if (dato == ""||dato==00||dato<1000||dato>52999) {
+            $("select[id='localidad']").first().html('<option>No existe localidad para ese codigo</option>');
+        }else{
+            $.ajax({
+                type: "POST",
+                dataType: "html",
+                url: "php/localidad_db.php",
+                data: {
+                    zip: dato
+                },
+                success: function(opciones){          
+                    $("#localidad").html(opciones);
+                }   
+            });
+        }
+    });
+
+
+    //  Función para gestionar la complejidad de la contraseña mediante
+    //  el plugin complexify:
+    //  https://github.com/danpalmer/jquery.complexify.js/
+    //  https://www.danpalmer.me/jquery-complexify
+    $('#pass').focusin(function() {
+        $('#pass').complexify({}, function(valid, complexity) {
+            $('#nivelComplejidad').val(complexity);
+            valorComplejidad=complexity;
+            if (complexity < 20) {
+                $('#labelComplejidad').html('Contraseña debil');
+            } else if (complexity >= 20 && complexity < 40) {
+                $('#labelComplejidad').html('Contraseña media');
+            } else {
+                $('#labelComplejidad').html('Contraseña segura');
+            }
         });
-}); */
-
-
-$("#cp").focusout(function() {
-    var dato = $(this).val();
-    if (dato == ""||dato==00||dato<1000||dato>52999) {
-        $("select[id='localidad']").first().html('<option>No existe localidad para ese codigo</option>');
-    }else{
-        $.ajax({
-            type: "POST",
-            dataType: "html",
-            url: "php/localidad_db.php",
-            data: {
-                zip: dato
-            },
-            success: function(opciones){          
-                $("#localidad").html(opciones);
-            }   
-        });
-    }
-});
-
-
-
-
-
-
-
+    });
 
 });
