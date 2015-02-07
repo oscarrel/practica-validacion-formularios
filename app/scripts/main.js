@@ -12,7 +12,7 @@ $(document).ready(function () {
         rules: {
             nombre: {
                 required: true,
-                spanishletters: true
+                spanishlettersspace: true
             },
             apellidos: {
                 required: true,
